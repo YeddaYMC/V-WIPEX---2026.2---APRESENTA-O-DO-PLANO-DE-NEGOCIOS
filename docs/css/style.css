@@ -2691,6 +2691,11 @@ main {
     padding: 12px 18px;
   }
 
+  .web-canvas svg {
+    width: min(100%, 540px);
+    height: auto;
+  }
+
   .section-heading-row,
   .business-heading {
     margin-top: 12px;
