@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">ACHOU!</title>
+  <circle cx="64" cy="64" r="62" fill="#f2f6f8"/>
+  <path d="M64 14c-24 0-43 19-43 43 0 30 43 62 43 62s43-32 43-62c0-24-19-43-43-43Z" fill="#1599bd"/>
+  <path d="M64 25c-18 0-32 14-32 32 0 11 6 22 14 30 6-12 17-20 31-23 12-2 22-10 22-21 0-10-11-18-35-18Z" fill="#69bd45"/>
+  <path d="M76 36h10l-3 35H73l3-35Zm-2 41h11v11H73V77Z" fill="#f79a1b"/>
+</svg>
