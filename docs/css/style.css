@@ -3323,14 +3323,11 @@ main {
   }
 
   .phase-tabs {
-    position: sticky;
-    z-index: 30;
-    top: 70px;
-    margin: 45px -16px 0;
+    position: relative;
+    z-index: auto;
+    margin: 24px -16px 0;
     padding: 12px 16px 0;
     background: rgba(242, 246, 248, 0.96);
-    box-shadow: 0 12px 24px rgba(16, 37, 79, 0.1);
-    backdrop-filter: blur(16px);
   }
 
   .phase-tab {
