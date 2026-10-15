@@ -321,7 +321,8 @@ main {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 86px 0 100px;
+  padding: 86px clamp(0px, 2vw, 22px) 100px 0;
+  padding-right: clamp(210px, 26vw, 360px);
 }
 
 .hero-kicker {
@@ -343,15 +344,17 @@ main {
 }
 
 .hero-title {
-  max-width: 940px;
-  margin-top: 35px;
-  font: 500 clamp(42px, 6.2vw, 86px)/0.98 "Manrope", sans-serif;
+  max-width: 660px;
+  margin-top: 8px;
+  font: 500 clamp(30px, 4.2vw, 62px)/0.96 "Manrope", sans-serif;
   letter-spacing: -0.065em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .hero-title > span {
   display: inline-block;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   color: var(--lime);
   font-weight: 800;
 }
@@ -1591,6 +1594,10 @@ main {
   border-color: var(--dimension-color);
   background: var(--dimension-color);
   box-shadow: 0 0 12px var(--dimension-color);
+}
+
+.mobile-web-options {
+  display: none;
 }
 
 .web-layout {
@@ -3267,15 +3274,44 @@ main {
   }
 
   .hero {
+    display: block;
     padding-top: 70px;
+  }
+
+  .hero-logo-wrap {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+  }
+
+  .hero-logo {
+    width: 96px;
+    height: 96px;
   }
 
   .hero-content {
     padding: 72px 0 105px;
+    padding-right: 0;
   }
 
   .hero-title {
-    font-size: clamp(43px, 14vw, 65px);
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 0.96;
+    margin-top: 6px;
+  }
+
+  .hero-title > span {
+    margin-bottom: 8px;
+  }
+
+  .hero-logo-wrap {
+    margin: 0 auto 12px;
   }
 
   .hero-lower,
@@ -3524,32 +3560,41 @@ main {
   }
 
   .dimension-toggles {
-    position: sticky;
-    z-index: 30;
-    top: 70px;
-    margin: 40px -16px 0;
-    padding: 10px 16px;
-    display: flex;
-    overflow-x: auto;
-    gap: 8px;
-    background: rgba(7, 29, 63, 0.96);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(16px);
-    scrollbar-width: none;
-  }
-
-  .dimension-toggles::-webkit-scrollbar {
     display: none;
   }
 
-  .dimension-toggle {
-    min-height: 52px;
-    flex: 0 0 225px;
+  .mobile-web-options {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mobile-web-option {
+    min-height: 64px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    font: 800 13px "Manrope", sans-serif;
+    line-height: 1.2;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    touch-action: manipulation;
+  }
+
+  .mobile-web-option.active {
+    border-color: color-mix(in srgb, var(--dimension-color) 80%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dimension-color) 60%, transparent), 0 0 16px color-mix(in srgb, var(--dimension-color) 25%, transparent);
+    background: color-mix(in srgb, var(--dimension-color) 18%, rgba(11, 32, 54, 0.94));
   }
 
   .web-canvas {
+    display: none;
     min-height: 430px;
   }
 
@@ -3618,6 +3663,37 @@ main {
   .presentation-controls {
     right: 12px;
     bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 14vw, 56px);
+    line-height: 0.9;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .web-layout {
+    gap: 18px;
+  }
+
+  .web-canvas {
+    min-height: 300px;
+    border-radius: 14px;
+  }
+
+  .web-canvas svg {
+    width: min(100%, 300px);
+  }
+
+  .web-inspector {
+    padding: 20px 18px;
+  }
+
+  .dimension-toggle {
+    flex: 0 0 180px;
   }
 }
 

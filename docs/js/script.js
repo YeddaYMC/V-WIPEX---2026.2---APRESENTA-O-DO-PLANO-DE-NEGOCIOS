@@ -10,7 +10,7 @@
   const progressLabels = document.querySelectorAll(".nav-progress span");
   const controlButtons = document.querySelectorAll(".presentation-controls button");
   let activeSection = 0;
-  let activePhase = 2;
+  let activePhase = 0;
   let activeTopic = 0;
   let activeDetailPage = 0;
   let detailsPerPage = 3;
@@ -148,7 +148,7 @@
 
   document.querySelectorAll("img.brand-logo").forEach((image) => {
     image.addEventListener("error", () => {
-      image.src = "public/achou-logo.svg";
+      image.src = "public/achou-logo.png";
     }, { once: true });
   });
 
@@ -211,6 +211,17 @@
       button.classList.toggle("active", enabledDimensions.includes(key));
       button.querySelector("strong").textContent = enabledDimensions.includes(key) ? "VISÍVEL" : "OCULTO";
       renderWeb();
+    });
+  });
+  document.querySelectorAll(".mobile-web-option").forEach((button, index) => {
+    const key = Object.keys(data.dimensions)[index];
+    button.addEventListener("click", () => {
+      const dimension = data.dimensions[key];
+      button.classList.add("active");
+      document.querySelectorAll(".mobile-web-option").forEach((item) => {
+        item.classList.toggle("active", item === button);
+      });
+      selectWebItem(dimension.title, dimension.detail, key);
     });
   });
   document.querySelector(".web-canvas").addEventListener("click", (event) => {
