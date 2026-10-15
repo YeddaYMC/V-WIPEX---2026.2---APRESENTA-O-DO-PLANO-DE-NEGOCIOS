@@ -823,8 +823,7 @@ main {
 }
 
 .topic-list {
-  position: sticky;
-  top: 96px;
+  position: static;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -3076,6 +3075,18 @@ main {
 }
 
 @media (max-width: 1179px) {
+  main {
+    height: calc(100dvh - 64px);
+  }
+
+  .presentation-section {
+    height: calc(100dvh - 64px);
+  }
+
+  .hero {
+    min-height: calc(100dvh - 64px);
+  }
+
   .presentation-section.active-slide {
     overflow-y: auto;
     scrollbar-width: none;
@@ -3424,9 +3435,7 @@ main {
   }
 
   .mobile-topic-picker {
-    position: sticky;
-    z-index: 30;
-    top: 70px;
+    position: static;
     margin: 0 -16px;
     padding: 12px 16px;
     display: grid;
@@ -3435,8 +3444,6 @@ main {
     background: rgba(7, 29, 63, 0.96);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(16px);
   }
 
   .mobile-topic-picker > span {
