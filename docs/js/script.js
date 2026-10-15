@@ -37,6 +37,7 @@
     return `<svg aria-hidden="true" fill="none" width="${size}" height="${size}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths[name] || paths.arrow}</svg>`;
   };
 
+  // Navegacao
   function changeSection(index) {
     activeSection = Math.max(0, Math.min(slides.length - 1, index));
     slides.forEach((slide, position) => {
@@ -56,6 +57,7 @@
     document.querySelector(".presentation-controls > span").textContent = data.sections[activeSection].label;
   }
 
+  // Fases
   function renderPhase() {
     const phase = data.phases[activePhase];
     const detail = document.querySelector(".phase-detail");
@@ -74,6 +76,7 @@
     detail.innerHTML = `<div class="phase-number">${phase.number}</div><div class="phase-copy"><span class="eyebrow">${escapeHtml(phase.eyebrow)}</span><div class="phase-title">${escapeHtml(phase.title)}</div>${activePhase === 2 ? `<div class="current-banner">${icon("spark", 17)} ETAPA ATUAL</div>` : ""}<div class="phase-list">${phase.items.map((item) => `<div>${icon("check", 16)} ${escapeHtml(item)}</div>`).join("")}</div>${artifacts}</div><div class="phase-result"><span>Resultado</span><strong>${escapeHtml(phase.result)}</strong>${icon(activePhase === 2 ? "target" : "layers", 34)}</div>${metrics}`;
   }
 
+  // Plano
   function topicNumber(index) {
     if (index < 6) return String(index + 1).padStart(2, "0");
     return index === 6 ? "06.1" : String(index).padStart(2, "0");
@@ -103,12 +106,14 @@
     detail.classList.add("topic-reveal");
   }
 
+  // Dimensoes
   const evidence = {
     ods: '<ul class="ods-list"><li><span class="ods-symbol ods-8"><b>8</b></span><span><strong>ODS 8</strong>Trabalho Decente e Crescimento Econômico</span></li><li><span class="ods-symbol ods-9"><b>9</b></span><span><strong>ODS 9</strong>Indústria, Inovação e Infraestrutura</span></li><li><span class="ods-symbol ods-10"><b>10</b></span><span><strong>ODS 10</strong>Redução das Desigualdades</span></li><li><span class="ods-symbol ods-11"><b>11</b></span><span><strong>ODS 11 — Cidades Sustentáveis</strong>Estímulo à economia hiperlocal e à mobilidade ativa pelo conceito de cidades de proximidade.<cite>MORENO, Carlos. Droit de Cité: De la «ville-monde» à la «ville du quart d’heure». Paris: L’Observatoire, 2020.</cite></span></li></ul>',
     direitos: '<ol class="human-rights-list"><li><strong>1. Inclusão e Acessibilidade Digital (Art. 19 e 26 da DUDH / ODS 9 da ONU)</strong><p><b>Princípio:</b> Acesso à tecnologia e informação como extensão dos direitos à educação, comunicação e cidadania.</p></li><li><strong>2. Trabalho Decente e Justiça Econômica (Art. 23 da DUDH)</strong><p><b>Princípio:</b> Direito a condições de trabalho equitativas, justa remuneração e livre escolha de emprego.</p></li><li><strong>3. Autodeterminação Econômica (Art. 1º do PIDESC / Arts. 1º e 22 da DUDH)</strong><p><b>Princípio:</b> Respeito ao protagonismo, autonomia e livre desenvolvimento econômico sobre a própria subsistência (ONU).</p></li></ol>',
     extensao: '<ul class="extension-evidence"><li><strong>Fase 1:</strong> Levantamento de requisitos, pesquisa comunitária e submissão do protótipo preliminar no IV WIPEX para coleta de feedbacks.</li><li><strong>Fase 2:</strong> Estruturação do backlog via histórias de usuário, testes de aceitação (UAT) com usuários finais e entrega do MVP multiplataforma (Web/Android).</li><li><strong>Fase 3:</strong> Modelagem do plano de negócios, validação prática da solução junto ao APL local e divulgação dos resultados conclusivos no V WIPEX.</li></ul>',
   };
 
+  // Selecao da teia
   function selectWebItem(title, detail, dimension) {
     selectedDimension = dimension || null;
     const inspector = document.querySelector(".web-inspector");
@@ -132,6 +137,7 @@
     if ($) $(content).hide().slideDown(180);
   }
 
+  // Renderizacao da teia
   function renderWeb() {
     const canvas = document.querySelector(".web-canvas");
     const relations = data.relations.filter((relation) =>
@@ -146,12 +152,14 @@
     canvas.querySelector("svg").innerHTML = `<defs><filter id="glow"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle cx="300" cy="250" r="178" class="web-guide"/><circle cx="300" cy="250" r="98" class="web-guide inner"/>${lineMarkup}<g class="center-node" role="button" tabindex="0" data-center="true"><circle cx="300" cy="250" r="61"/><circle cx="300" cy="250" r="50"/><text x="300" y="245">ACHOU!</text><text x="300" y="268" class="center-subtitle">ECONOMIA LOCAL</text></g>${nodes}`;
   }
 
+  // Fallback da logo
   document.querySelectorAll("img.brand-logo").forEach((image) => {
     image.addEventListener("error", () => {
       image.src = "public/achou-logo.png";
     }, { once: true });
   });
 
+  // Eventos de navegacao
   navItems.forEach((item, index) => item.addEventListener("click", () => changeSection(index)));
   document.querySelectorAll(".brand").forEach((brand) => brand.addEventListener("click", () => changeSection(0)));
   document.querySelector(".primary-action").addEventListener("click", () => changeSection(1));
@@ -168,6 +176,7 @@
     }
   });
 
+  // Selecao de fase
   document.querySelectorAll(".phase-tab").forEach((tab, index) => tab.addEventListener("click", () => {
     activePhase = index;
     renderPhase();
@@ -196,6 +205,7 @@
     renderTopic();
   });
 
+  // Filtros desktop
   document.querySelectorAll(".dimension-toggle").forEach((button, index) => {
     const key = Object.keys(data.dimensions)[index];
     button.addEventListener("click", () => {
@@ -213,6 +223,7 @@
       renderWeb();
     });
   });
+  // Filtros mobile
   document.querySelectorAll(".mobile-web-option").forEach((button, index) => {
     const key = Object.keys(data.dimensions)[index];
     button.addEventListener("click", () => {
@@ -224,6 +235,7 @@
       selectWebItem(dimension.title, dimension.detail, key);
     });
   });
+  // Interacao com a teia
   document.querySelector(".web-canvas").addEventListener("click", (event) => {
     const node = event.target.closest(".web-node, .center-node, .web-relation");
     if (!node) return;
@@ -236,6 +248,7 @@
       selectWebItem("ACHOU! — núcleo do ecossistema", "A plataforma articula tecnologia, gestão, extensão e impacto territorial em uma solução georreferenciada.");
     }
   });
+  // Links externos
   document.querySelectorAll(".link-placeholders > button").forEach((button, index) => {
     const urls = [
       "https://github.com/YeddaMC/ACHOU_Projeto_Interdisciplinar_GTI_IFPR-",
@@ -244,6 +257,7 @@
     button.addEventListener("click", () => window.open(urls[index], "_blank", "noopener,noreferrer"));
   });
 
+  // Ajuste responsivo
   function updatePageSize() {
     detailsPerPage = window.innerWidth <= 760 ? 1 : window.innerWidth <= 1179 ? 2 : 3;
     activeDetailPage = 0;
@@ -251,6 +265,7 @@
   }
   window.addEventListener("resize", updatePageSize);
 
+  // Inicializacao
   renderPhase();
   renderTopic();
   renderWeb();
