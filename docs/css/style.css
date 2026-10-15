@@ -3435,13 +3435,15 @@ main {
   }
 
   .mobile-topic-picker {
-    position: static;
-    margin: 0 -16px;
+    position: sticky; /* Fixa na rolagem */
+    z-index: 30; /* Acima do conteúdo */
+    top: -23px; /* Compensa padding */
+    margin: -15px -16px 12px; /* Alinha à tela */
     padding: 12px 16px;
     display: grid;
     gap: 7px;
     color: white;
-    background: rgba(7, 29, 63, 0.96);
+    background: #071d3f; /* Opaco */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
@@ -3571,10 +3573,17 @@ main {
   }
 
   .mobile-web-options {
-    margin-top: 16px;
+    position: sticky; /* Fixa na rolagem */
+    z-index: 30; /* Acima do conteúdo */
+    top: -23px; /* Compensa padding */
+    margin: -15px -16px 16px; /* Alinha à tela */
+    padding: 12px 16px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
+    background: #071d3f; /* Opaco */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
 
   .mobile-web-option {
